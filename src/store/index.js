@@ -1,9 +1,16 @@
 /** 创建store */
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import combineReducers from './reducers.js'
+import promiseMiddleware from './middleware/promiseMiddleware'
+import combineReducers from './reducers'
 
-const store = createStore(combineReducers, applyMiddleware(thunkMiddleware))
+const middlewares = [thunkMiddleware, promiseMiddleware]
+
+if (process.env.NODE_ENV !== 'production') {
+  const { logger } = require('redux-logger')
+  middlewares.push(logger)
+}
+const store = createStore(combineReducers, applyMiddleware(...middlewares))
 
 export default store
 

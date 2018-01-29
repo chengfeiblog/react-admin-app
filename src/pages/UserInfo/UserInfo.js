@@ -23,7 +23,7 @@ class UserInfo extends Component {
               <p>介绍：{userInfo.info}</p>
             </div>
           )}
-        <button onClick={() => this.props.getUserInfo()}>请求用户信息</button>
+        <button onClick={() => this.props.getUserInfo(23)}>请求用户信息</button>
       </div>
     )
   }

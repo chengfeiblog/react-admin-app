@@ -23,10 +23,17 @@ class SiderCustom extends Component {
     this.setMenuOpen(this.props)
   }
   componentWillReceiveProps (nextProps) {
-    console.log(nextProps)
     this.onCollapse(nextProps.collapsed)
     this.setMenuOpen(nextProps)
   }
+
+  shouldComponentUpdate (nextProps) {
+    if (nextProps.collapsed === this.props.collapsed) {
+      return false
+    }
+    return true
+  }
+
   setMenuOpen = (props) => {
     const { pathname } = props.location
     this.setState({

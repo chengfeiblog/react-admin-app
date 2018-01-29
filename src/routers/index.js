@@ -12,9 +12,15 @@ import UserInfo from 'bundle-loader?lazy&name=userInfo!pages/UserInfo/UserInfo'
 import NotFound from 'bundle-loader?lazy&name=notFound!pages/NotFound/NotFound'
 import Login from 'bundle-loader?lazy&name=notFound!pages/Login/Login'
 
-const asyncComponent = component => props => (
-  <Bundle load={component}>
-    {Component => (Component ? <Component {...props} /> : <Loading />)}
+const createComponent = modFn => props => (
+  <Bundle load={modFn}>
+    {WaitingComponent =>
+      (WaitingComponent ? (
+        <WaitingComponent {...props} />
+      ) : (
+        <Loading {...props} />
+      ))
+    }
   </Bundle>
 )
 
@@ -25,12 +31,15 @@ export default class Routers extends Component {
         <Route
           exact
           path="/app/dashboard/home"
-          component={asyncComponent(Home)}
+          component={createComponent(Home)}
         />
-        <Route path="/app/self/page1" component={asyncComponent(Page1)} />
-        <Route path="/app/self/counter" component={asyncComponent(Counter)} />
-        <Route path="/app/self/userinfo" component={asyncComponent(UserInfo)} />
-        <Route path="/app/self/login" component={asyncComponent(Login)} />
+        <Route path="/app/self/page1" component={createComponent(Page1)} />
+        <Route path="/app/self/counter" component={createComponent(Counter)} />
+        <Route
+          path="/app/self/userinfo"
+          component={createComponent(UserInfo)}
+        />
+        <Route path="/app/self/login" component={createComponent(Login)} />
         <Route render={() => <Redirect to="/404" />} />
       </Switch>
     )
