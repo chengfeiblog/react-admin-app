@@ -62,7 +62,6 @@ class HeaderCustom extends Component {
             title={
               <span className={styles.avatar}>
                 <img src={avater} alt="头像" />
-                <i className="on bottom b-white" />
               </span>
             }
           >
