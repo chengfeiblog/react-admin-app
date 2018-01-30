@@ -34,7 +34,6 @@ class HeaderCustom extends Component {
     this.props.history.push('/login')
   }
   render () {
-    const { responsive, path } = this.props
     return (
       <Header
         style={{ background: '#fff', padding: 0, height: 65 }}
@@ -89,9 +88,4 @@ class HeaderCustom extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { responsive = { data: {} } } = state.httpData
-  return { responsive }
-}
-
-export default withRouter(connect(mapStateToProps)(HeaderCustom))
+export default withRouter(connect()(HeaderCustom))
