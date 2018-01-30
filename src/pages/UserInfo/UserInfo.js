@@ -11,7 +11,7 @@ class UserInfo extends Component {
     )
   }
   render () {
-    const { userInfo, isLoading, errorMsg } = this.props.userInfo
+    const { userInfo, isLoading, errorMsg } = this.props.userInfoData
     return (
       <div>
         {isLoading
@@ -29,7 +29,7 @@ class UserInfo extends Component {
   }
 }
 
-export default connect(state => ({ userInfo: state.userInfoData }), {
+export default connect(({ userInfoData }) => ({ userInfoData }), {
   /** react-redux提供的简单写法 */
 
   getUserInfo,
