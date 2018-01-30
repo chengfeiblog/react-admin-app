@@ -1,23 +1,23 @@
 export const menus = [
-  { key: '/app/dashboard/home', title: '首页', icon: 'mobile' },
+  { link: '/app/dashboard/home', title: '首页', icon: 'mobile' },
   {
-    key: '/app/self',
+    link: '/app/self',
     title: '测试demo',
     icon: 'safety',
     sub: [
-      { key: '/app/self/page1', title: 'Page1', icon: '' },
-      { key: '/app/self/counter', title: 'counter', icon: '' },
-      { key: '/app/self/userinfo', title: 'userinfo', icon: '' },
-      { key: '/app/self/login', title: 'login', icon: '' },
+      { link: '/app/self/page1', title: 'Page1', icon: '' },
+      { link: '/app/self/counter', title: 'counter', icon: '' },
+      { link: '/app/self/userinfo', title: 'userinfo', icon: '' },
+      { link: '/app/self/login', title: 'login', icon: '' },
     ],
   },
   {
-    key: '/app/auth',
+    link: '/app/auth',
     title: '权限管理',
     icon: 'safety',
     sub: [
-      { key: '/app/auth/basic', title: '基础演示', icon: '' },
-      { key: '/app/auth/routerEnter', title: '路由拦截', icon: '' },
+      { link: '/app/auth/basic', title: '基础演示', icon: '' },
+      { link: '/app/auth/routerEnter', title: '路由拦截', icon: '' },
     ],
   },
 ]

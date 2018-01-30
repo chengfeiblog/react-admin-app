@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { menus } from '@/constants/menus'
 import PropTypes from 'prop-types'
 import styles from './Sider.less'
-import SiderMenu from './Menu'
+import Menu from './Menu'
 
 const { Sider } = Layout
 
@@ -25,13 +25,6 @@ class SiderCustom extends Component {
   componentWillReceiveProps (nextProps) {
     this.onCollapse(nextProps.collapsed)
     this.setMenuOpen(nextProps)
-  }
-
-  shouldComponentUpdate (nextProps) {
-    if (nextProps.collapsed === this.props.collapsed) {
-      return false
-    }
-    return true
   }
 
   setMenuOpen = (props) => {
@@ -69,7 +62,7 @@ class SiderCustom extends Component {
         style={{ overflowY: 'auto' }}
       >
         <div className={styles.logo} />
-        <SiderMenu
+        <Menu
           menus={menus}
           onClick={this.menuClick}
           theme="dark"

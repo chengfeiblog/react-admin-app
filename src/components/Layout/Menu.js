@@ -3,10 +3,10 @@ import { Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 const renderMenuItem = ({
-  key, title, icon, link, ...props
+  link, title, icon, ...props
 }) => (
-  <Menu.Item key={key || link} {...props}>
-    <Link to={link || key}>
+  <Menu.Item key={link} {...props}>
+    <Link to={link}>
       {icon && <Icon type={icon} />}
       <span className="nav-text">{title}</span>
     </Link>
@@ -14,10 +14,10 @@ const renderMenuItem = ({
 )
 
 const renderSubMenu = ({
-  key, title, icon, link, sub, ...props
+  link, title, icon, sub, ...props
 }) => (
   <Menu.SubMenu
-    key={key || link}
+    key={link}
     title={
       <span>
         {icon && <Icon type={icon} />}
