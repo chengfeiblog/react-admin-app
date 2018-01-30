@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import avater from 'assets/img/b1.jpg'
 // import { gitOauthToken, gitOauthInfo } from '../axios'
-import styles from './Header.less'
 
 const { Header } = Layout
 const { SubMenu } = Menu
@@ -59,7 +58,7 @@ class HeaderCustom extends Component {
           </Menu.Item>
           <SubMenu
             title={
-              <span className={styles.avatar}>
+              <span className="avatar">
                 <img src={avater} alt="头像" />
               </span>
             }

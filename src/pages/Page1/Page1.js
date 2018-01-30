@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './Page1.less'
+import styles from './Page1.module.less'
 
 export default class Page1 extends Component {
   render () {

@@ -4,7 +4,7 @@ import config from 'utils/config'
 import PropTypes from 'prop-types'
 import { Button, Row, Form, Input } from 'antd'
 import Logo from 'assets/img/footercode.png'
-import styles from './index.less'
+import styles from './index.module.less'
 
 const FormItem = Form.Item
 

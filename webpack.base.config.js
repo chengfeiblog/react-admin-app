@@ -11,8 +11,8 @@ const baseConfig = {
   },
   output: {
     path: path.join(__dirname, './dist'),
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    filename: 'static/js/[name].[chunkhash:7].js',
+    chunkFilename: 'static/js/[name].[chunkhash:7].js',
     publicPath: '/',
   },
   module: {

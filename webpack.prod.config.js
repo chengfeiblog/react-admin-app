@@ -4,10 +4,14 @@ const merge = require('webpack-merge')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
+// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const baseConfig = require('./webpack.base.config.js')
 
+// const publicUrl = '.'
+
 const prodConfig = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   output: {
     // 采用相对路径编译，增加环境兼容性
     publicPath: './',
@@ -15,19 +19,33 @@ const prodConfig = {
   module: {
     rules: [
       {
-        test: /\.(css|less)$/,
-        exclude: path.resolve(__dirname, './node_modules'),
+        test: /\.(less)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
+          publicPath: '../../',
           use: [
-            'css-loader?modules&localIdentName=[local]-[hash:base64:5]&minimize=true',
+            ({ resource }) => ({
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: /\.module\.less/.test(resource),
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+                minimize: true,
+                sourceMap: true,
+              },
+            }),
             'postcss-loader', // 自动补后缀
-            'less-loader',
+            {
+              loader: require.resolve('less-loader'),
+              options: {
+                // modifyVars: { '@primary-color': '#001529' },
+              },
+            },
           ],
         }),
       },
       {
-        test: /\.(css|less)$/,
+        test: /\.(less)$/,
         include: path.resolve(__dirname, './node_modules'),
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -53,12 +71,33 @@ const prodConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
+        PUBLIC_URL: 'scm.tf56.com',
       },
     }),
     new ExtractTextPlugin({
       filename: 'static/css/[name].[contenthash:7].css',
       allChunks: true,
     }),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+    }),
+    // new SWPrecacheWebpackPlugin({
+    //   dontCacheBustUrlsMatching: /\.\w{8}\./,
+    //   filename: 'service-worker.js',
+    //   logger (message) {
+    //     if (message.indexOf('Total precache size is') === 0) {
+    //       return
+    //     }
+    //     if (message.indexOf('Skipping static resource') === 0) {
+    //       return
+    //     }
+    //     console.log(message)
+    //   },
+    //   minify: true,
+    //   navigateFallback: `${publicUrl}/index.html`,
+    //   navigateFallbackWhitelist: [/^(?!\/__).*/],
+    //   staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    // }),
   ],
 }
 

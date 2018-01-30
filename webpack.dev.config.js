@@ -12,24 +12,30 @@ const devConfig = {
     ],
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: 'static/js/[name].[hash:7].js',
   },
   module: {
     rules: [
       {
-        test: /\.(css|less)$/,
-        exclude: path.resolve(__dirname, './node_modules'),
+        test: /\.(less)$/,
         use: [
           'style-loader',
-          'css-loader?modules&localIdentName=[local]-[hash:base64:5]',
+          ({ resource }) => ({
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: /\.module/.test(resource),
+              localIdentName: '[name]__[local]__[hash:base64:5]',
+            },
+          }),
           'postcss-loader',
-          'less-loader',
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              // modifyVars: { '@primary-color': '#001529' },
+            },
+          },
         ],
-      },
-      {
-        test: /\.(css|less)$/,
-        include: path.resolve(__dirname, './node_modules'),
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
     ],
   },
