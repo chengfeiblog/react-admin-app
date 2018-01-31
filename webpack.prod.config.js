@@ -4,10 +4,10 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
-// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const baseConfig = require('./webpack.base.config.js')
 
-const publicUrl = 'localhost:8080'
+const publicUrl = '/'
 
 const prodConfig = {
   devtool: 'source-map',
@@ -58,7 +58,6 @@ const prodConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        PUBLIC_URL: publicUrl,
       },
     }),
     new ExtractTextPlugin({
@@ -68,23 +67,23 @@ const prodConfig = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
-    // new SWPrecacheWebpackPlugin({
-    //   dontCacheBustUrlsMatching: /\.\w{8}\./,
-    //   filename: 'service-worker.js',
-    //   logger (message) {
-    //     if (message.indexOf('Total precache size is') === 0) {
-    //       return
-    //     }
-    //     if (message.indexOf('Skipping static resource') === 0) {
-    //       return
-    //     }
-    //     console.log(message)
-    //   },
-    //   minify: true,
-    //   navigateFallback: `${publicUrl}/index.html`,
-    //   navigateFallbackWhitelist: [/^(?!\/__).*/],
-    //   staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    // }),
+    new SWPrecacheWebpackPlugin({
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'service-worker.js',
+      logger (message) {
+        if (message.indexOf('Total precache size is') === 0) {
+          return
+        }
+        if (message.indexOf('Skipping static resource') === 0) {
+          return
+        }
+        console.log(message)
+      },
+      minify: true,
+      navigateFallback: `${publicUrl}/index.html`,
+      navigateFallbackWhitelist: [/^(?!\/__).*/],
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    }),
   ],
 }
 

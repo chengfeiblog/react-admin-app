@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config.js')
 
@@ -39,6 +40,14 @@ const devConfig = {
       },
     ],
   },
+  plugins: [
+    /** 指定环境 */
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
+  ],
   devServer: {
     port: 8080,
     contentBase: path.join(__dirname, ''),

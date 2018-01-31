@@ -2,8 +2,10 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-// import registerServiceWorker from './registerServiceWorker'
+
 import 'assets/theme/index.less'
+import registerServiceWorker from './registerServiceWorker'
+
 import store from './store'
 import Page from './Page'
 
@@ -29,4 +31,4 @@ if (module.hot) {
   })
 }
 
-// registerServiceWorker()
+registerServiceWorker()

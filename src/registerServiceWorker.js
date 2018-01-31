@@ -5,14 +5,15 @@ const isLocalhost = Boolean(window.location.hostname === 'localhost' ||
     window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/))
 
 export default function register () {
+  const PUBLIC_URL = ''
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location)
+    const publicUrl = new URL(PUBLIC_URL, window.location)
     if (publicUrl.origin !== window.location.origin) {
       return
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
+      const swUrl = `${PUBLIC_URL}/service-worker.js`
 
       if (!isLocalhost) {
         registerValidSW(swUrl)
