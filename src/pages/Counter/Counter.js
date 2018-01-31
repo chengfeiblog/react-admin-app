@@ -28,7 +28,7 @@ class Counter extends Component {
             this.props.reset()
           }}
         >
-          重置
+          重置三生
         </button>
       </div>
     )

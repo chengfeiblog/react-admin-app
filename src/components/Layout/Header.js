@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Icon, Layout, Badge, Popover } from 'antd'
+import { Menu, Icon, Layout, Badge } from 'antd'
 import screenfull from 'screenfull'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'

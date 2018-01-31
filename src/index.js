@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 
 import 'assets/theme/index.less'
-import registerServiceWorker from './registerServiceWorker'
+import swRegister from './swRegister.js'
 
 import store from './store'
 import Page from './Page'
@@ -31,4 +31,4 @@ if (module.hot) {
   })
 }
 
-registerServiceWorker()
+swRegister()

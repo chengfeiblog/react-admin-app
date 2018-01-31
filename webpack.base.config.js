@@ -10,7 +10,14 @@ const baseConfig = {
 
   entry: {
     app: ['babel-polyfill', path.join(__dirname, 'src/index.js')],
-    vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
+    vendor: [
+      'axios',
+      'react',
+      'react-router-dom',
+      'redux',
+      'react-dom',
+      'react-redux',
+    ],
   },
   output: {
     path: assetsPath,
