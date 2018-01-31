@@ -28,7 +28,7 @@ const prodConfig = {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
-                modules: /\.module\.less/.test(resource),
+                modules: /\.module/.test(resource),
                 localIdentName: '[name]__[local]__[hash:base64:5]',
                 minimize: true,
                 sourceMap: true,
@@ -41,18 +41,6 @@ const prodConfig = {
                 // modifyVars: { '@primary-color': '#001529' },
               },
             },
-          ],
-        }),
-      },
-      {
-        test: /\.(less)$/,
-        include: path.resolve(__dirname, './node_modules'),
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader?minimize=true',
-            'postcss-loader', // 自动补后缀
-            'less-loader',
           ],
         }),
       },
