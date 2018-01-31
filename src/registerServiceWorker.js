@@ -15,10 +15,15 @@ export default function register () {
     window.addEventListener('load', () => {
       const swUrl = `${PUBLIC_URL}/service-worker.js`
 
-      if (!isLocalhost) {
-        registerValidSW(swUrl)
-      } else {
+      if (isLocalhost) {
         checkValidServiceWorker(swUrl)
+
+        navigator.serviceWorker.ready.then(() => {
+          console.log('This web app is being served cache-first by a service ' +
+              'worker. To learn more, visit https://goo.gl/SC7cgQ')
+        })
+      } else {
+        registerValidSW(swUrl)
       }
     })
   }
@@ -53,12 +58,14 @@ function checkValidServiceWorker (swUrl) {
         response.status === 404 ||
         response.headers.get('content-type').indexOf('javascript') === -1
       ) {
+        // No service worker found. Probably a different app. Reload the page.
         navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload()
           })
         })
       } else {
+        // Service worker found. Proceed as normal.
         registerValidSW(swUrl)
       }
     })
