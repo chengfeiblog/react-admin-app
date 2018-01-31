@@ -1,4 +1,3 @@
-const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
@@ -8,7 +7,7 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 // const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const baseConfig = require('./webpack.base.config.js')
 
-// const publicUrl = '.'
+const publicUrl = 'localhost:8080'
 
 const prodConfig = {
   devtool: 'source-map',
@@ -59,7 +58,7 @@ const prodConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        PUBLIC_URL: 'scm.tf56.com',
+        PUBLIC_URL: publicUrl,
       },
     }),
     new ExtractTextPlugin({

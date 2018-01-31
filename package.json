@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "author": "chengfei",
   "description": "react appp",
-  "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress --hot",
+    "start":
+      "webpack-dev-server --config webpack.dev.config.js --color --progress --hot",
     "build": "webpack --config webpack.prod.config.js"
   },
   "license": "ISC",
@@ -21,6 +21,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bundle-loader": "^0.5.5",
     "clean-webpack-plugin": "^0.1.18",
+    "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.9",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
