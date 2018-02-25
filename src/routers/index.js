@@ -13,50 +13,50 @@ import NotFound from 'bundle-loader?lazy&name=notFound!pages/NotFound/NotFound'
 import Login from 'bundle-loader?lazy&name=notFound!pages/Login/Login'
 
 const createComponent = modFn => props => (
-  <Bundle load={modFn}>
-    {WaitingComponent =>
-      (WaitingComponent ? (
-        <WaitingComponent {...props} />
-      ) : (
-        <Loading {...props} />
-      ))
-    }
-  </Bundle>
+    <Bundle load={modFn}>
+        {WaitingComponent =>
+            (WaitingComponent ? (
+                <WaitingComponent {...props} />
+            ) : (
+                <Loading {...props} />
+            ))
+        }
+    </Bundle>
 )
 
 // 配置路由地址
 const routes = [
-  {
-    path: '/app/dashboard/home',
-    component: createComponent(Home),
-  },
-  {
-    path: '/app/self/page1',
-    component: createComponent(Page1),
-  },
-  {
-    path: '/app/self/counter',
-    component: createComponent(Counter),
-  },
-  {
-    path: '/app/self/userinfo',
-    component: createComponent(UserInfo),
-  },
-  {
-    path: '/app/self/login',
-    component: createComponent(Login),
-  },
+    {
+        path: '/app/dashboard/home',
+        component: createComponent(Home),
+    },
+    {
+        path: '/app/self/page1',
+        component: createComponent(Page1),
+    },
+    {
+        path: '/app/self/counter',
+        component: createComponent(Counter),
+    },
+    {
+        path: '/app/self/userinfo',
+        component: createComponent(UserInfo),
+    },
+    {
+        path: '/app/self/login',
+        component: createComponent(Login),
+    },
 ]
 
 export default class Routers extends Component {
-  render () {
-    return (
-      <Switch>
-        {routes.map(({ path, component }, key) => (
-          <Route key={key} exact path={path} component={component} />
-        ))}
-        <Route render={() => <Redirect to="/404" />} />
-      </Switch>
-    )
-  }
+    render () {
+        return (
+            <Switch>
+                {routes.map(({ path, component }, key) => (
+                    <Route key={key} exact path={path} component={component} />
+                ))}
+                <Route render={() => <Redirect to="/404" />} />
+            </Switch>
+        )
+    }
 }

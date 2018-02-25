@@ -1,3 +1,3 @@
 module.exports = {
-  appName: 'admin',
+    appName: 'admin',
 }

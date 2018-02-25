@@ -12,6 +12,6 @@ import * as userInfo from './userInfo/reducer'
 
 /** 使用官方提供的 */
 export default combineReducers({
-  ...counter,
-  ...userInfo,
+    ...counter,
+    ...userInfo,
 })

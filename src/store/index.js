@@ -7,8 +7,8 @@ import combineReducers from './reducers'
 const middlewares = [thunkMiddleware, promiseMiddleware]
 
 if (process.env.NODE_ENV !== 'production') {
-  const { logger } = require('redux-logger')
-  middlewares.push(logger)
+    const { logger } = require('redux-logger')
+    middlewares.push(logger)
 }
 const store = createStore(combineReducers, applyMiddleware(...middlewares))
 
